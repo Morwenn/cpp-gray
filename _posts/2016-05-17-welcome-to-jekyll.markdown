@@ -18,6 +18,12 @@ print_hi('Tom')
 #=> prints 'Hi, Tom' to STDOUT.
 {% endhighlight %}
 
+Also, a quick test for MathJax in Jekyll:
+
+$$a^2 + b^2 = c^2$$
+
+Also another one for \\( E = mc^2 \\) inline MathJax because it's always worth testing.
+
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
 [jekyll-docs]: http://jekyllrb.com/docs/home
