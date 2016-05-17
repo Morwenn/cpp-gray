@@ -1,3 +1,5 @@
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+
 **cpp-gray** is an experimental two-part project around [reflected binary
 code](https://en.wikipedia.org/wiki/Gray_code), generally known as **Gray
 code**. The project includes the following parts:
