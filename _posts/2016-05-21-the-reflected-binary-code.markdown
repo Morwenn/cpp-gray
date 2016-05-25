@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Binary Reflected Code"
+title: "The Reflected Binary Code"
 date: 2016-05-21 17:32:43 +0200
 categories: gray code
 ---
