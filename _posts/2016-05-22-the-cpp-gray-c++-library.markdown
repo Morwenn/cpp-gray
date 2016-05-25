@@ -17,7 +17,7 @@ code order. `gray_code` can be constructed from an unsigned integer of the wrapp
 an `explicit` conversion operator to transform the Gray code back to an unsigned integer with the same value. The class
 template can be summarized as follows:
 
-```cpp
+{% highlight cpp %}
 template<typename Unsigned>
 struct gray_code
 {
@@ -49,7 +49,7 @@ struct gray_code
 template<typename Unsigned>
 auto swap(gray_code<Unsigned>& lhs, gray_code<Unsigned>& rhs) noexcept
     -> void;
-```
+{% endhighlight %}
 
 The goal of `gray_code` is to be just like another unsigned integer type, minus the implicit conversion, except that users
 manipulate a Gray code representation instead of a « natural binary » representation. When translating algorithms to code
@@ -134,7 +134,7 @@ either too slow to be included in the library, or too specific to have dedicated
 What's a library introduction without a small example? The following snippet showcases some things that are dable directly
 in the Gray code domain with `gray_code`:
 
-```cpp
+{% highlight cpp %}
 using cppgray::gray_code;
 
 auto gr = gray_code<unsigned>(24u);
@@ -143,7 +143,7 @@ unsigned g = gr.value;  // g == 20u (0b10100)
 
 ++u; ++gr;
 assert(u == gr);
-```
+{% endhighlight %}
 
 To be honest, there isn't much to showcase yet and the library really isn't evolving at a fast pace considering that any
 other fast Gray code algorithm has yet to be discovered. If any new algorithm makes its way into the library, it will surely
