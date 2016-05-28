@@ -4,7 +4,7 @@ title: The cpp-gray C++ Library
 date: 2016-05-22 17:32:43 +0200
 categories: [gray code, c++]
 ---
-The previous article introduced the notation needed to understand Gray code algorithms from a pseudo-formal points of view.
+The previous article introduced the notation needed to understand Gray code algorithms from a pseudo-formal point of view.
 This new article presents the other side of the coin: the **cpp-gray** C++ library that we will be using to implement the
 different algorithms, and more specifically the design of the `gray_code` class template.
 
@@ -131,7 +131,7 @@ either too slow to be included in the library, or too specific to have dedicated
 
 ### Example
 
-What's a library introduction without a small example? The following snippet showcases some things that are dable directly
+What's a library introduction without a small example? The following snippet showcases some things that are doable directly
 in the Gray code domain with `gray_code`:
 
 {% highlight cpp %}
