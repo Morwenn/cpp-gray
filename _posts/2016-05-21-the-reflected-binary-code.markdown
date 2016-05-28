@@ -4,41 +4,76 @@ title: "The Reflected Binary Code"
 date: 2016-05-21 17:32:43 +0200
 categories: gray code
 ---
-*In this article, we define and explain most of the symbols and operations that will be used in the rest of the blog.*
+In this article, we define and explain most of the sets that will be in the rest of the blog, as well as the most common
+operations to operate on them. We also define a couple of additional symbols akin to programming language literals that will
+be used to represent values of the different sets in a terse manner.
 
-Let \\( \mathbb{G} \\) be the set of Gray code number sufficient to represent the set of natural numbers \\( \mathbb{N} \\).
-The natural numbers represented by \\( \mathbb{G} \\) have all the mathematical properties of the numbers in
-\\( \mathbb{N} \\). However, we also specify that the numbers in \\( \mathbb{G} \\) have a Gray code binary representation.
-We also call \\( \mathbb{B} \\) the equivalent set of numbers with a two's complement (or « natural binary ») representation.
-We insolently abuse the following mathematical symbols to define basic bitwise operations on both \\( \mathbb{G} \\) and
-\\( \mathbb{B} \\) akin to those used in common programming languages:
+### Sets and basic operations
+
+Let \\( \mathbb{B} \\) and \\( \mathbb{G} \\) be two sets of numbers, each of them sufficient to model the set of natural
+numbers \\( \mathbb{N} \\). Both of these sets support all of the operations supported by \\( \mathbb{N} \\) with the same
+semantics. However, their behaviour differs with regard to the following \\( repr \\) bijective function:
+
+$$\begin{array}{ccccc}
+repr & : & \mathbb{G} & \longrightarrow  & \{0, 1\}^*\\
+repr & : & \mathbb{B} & \longrightarrow  & \{0, 1\}^*
+\end{array}$$
+
+The \\( repr \\) function associates a different bit vector from \\( \\{0, 1\\}^* \\) to every element of \\( \mathbb{B} \\)
+and \\( \mathbb{G} \\) as follows:
+
+* To any element of \\( \mathbb{B} \\), \\( repr \\) associates a bit vector corresponding to the usual representation of
+the element in two's complement, or [« natural binary code »][wiki-natural-binary].
+* To any element of \\( \mathbb{G} \\), \\( repr \\) associates a bit vector corresponding to the reflected binary [Gray
+code][wiki-gray-code] representation of the element.
+
+We abuse a few mathematical symbols to define the following bitwise operations on \\( \\{0, 1\\}^* \\) akin to those used in
+C++ and other well-known programming languages:
 
 * \\( \& \\) is a bitwise AND.
 * \\( \| \\) is a bitwise OR.
 * \\( \oplus \\) is a bitwise XOR.
 * \\( \ll \\) is a binary left shift.
 * \\( \gg \\) is a binary right shift.
+* \\( \sim \\) is a prefix unary bitwise NOT.
 
-Since the binary representation of the numbers in both \\( \mathbb{G} \\) and \\( \mathbb{B} \\) does matter, we will also
+We also define all of the operations above on \\( \mathbb{B} \\) and \\( \mathbb{G} \\) in the following manner: let
+\\( \otimes \\) be any of the binary operators above, and let \\( \mathbb{X} \\) be either \\( \mathbb{B} \\) or
+\\( \mathbb{G} \\):
+
+$$ \forall x, y \in \mathbb{X} : x \otimes y = repr^{-1}(repr(x) \otimes repr(y)) $$
+
+I guess that how \\( \sim \\) is defined on \\( \mathbb{B} \\) and \\( \mathbb{G} \\) is pretty obvious, so I won't repeat
+a similar formula. As a side note, I am fully aware that the mathematical symbol \\( \mathbb{B} \\) is sometimes used to
+represent the [Boolean domain][wiki-boolean-domain]; however this blog uses \\( \\{0, 1\\} \\) instead to represent it,
+which is another standard notation.
+
+### Literals
+
+To easily understand which kinds of values we are operating on, we define additional symbols that I will call « literals »
+since it's the name we give them in the computer science world (which is distinct from the mathematical notion of literals).
+We define literals for both \\( \mathbb{N} \\), \\( \mathbb{B} \\), \\( \mathbb{G} \\) and \\( \\{0, 1\\}^* \\) as follows:
 use the following notations to represent numbers:
 
-* When it does not matter whether a number belongs to \\( \mathbb{G} \\) or \\( \mathbb{B} \\), we will use the usual
-integral numbers notation:
+* When it does not matter whether a number belongs to \\( \mathbb{B} \\) or \\( \mathbb{G} \\), we will use the usual
+integral numbers notation and assume that we work on \\( \mathbb{N} \\):
  
-    $$0, 1, 16, 23$$
+    $$ 0, 1, 16, 23 $$
 
-* A number belonging to \\( \mathbb{G} \\) will be denoted by a subscript \\( \mathbb{G} \\): 
+* A number explicitly belonging to \\( \mathbb{B} \\) will be denoted by a subscript \\( \mathbb{B} \\): 
 
-    $$0_{\mathbb{G}}, 1_{\mathbb{G}}, 16_{\mathbb{G}}, 23_{\mathbb{G}}$$
+    $$ 0_{\mathbb{B}}, 1_{\mathbb{B}}, 16_{\mathbb{B}}, 23_{\mathbb{B}} $$
 
-* A number belonging to \\( \mathbb{B} \\) will be denoted by a subscript \\( \mathbb{B} \\): 
+* A number explicitly belonging to \\( \mathbb{G} \\) will be denoted by a subscript \\( \mathbb{G} \\): 
 
-    $$0_{\mathbb{B}}, 1_{\mathbb{B}}, 16_{\mathbb{B}}, 23_{\mathbb{B}}$$
+    $$ 0_{\mathbb{G}}, 1_{\mathbb{G}}, 16_{\mathbb{G}}, 23_{\mathbb{G}} $$
 
-* When the binary representation matters, a string of bits prefixed by \\( 0b \\) will be used as in several programming
-languages:
+* When needed, the binary representation of the numbers will use \\( \\{0, 1\\}^* \\) literals, which are bit vectors
+prefixed by \\( 0b \\) to resemble binary literals in several programming languages:
 
-  $$0b0, 0b1, 0b10000, 0b10111$$
+  $$ 0b0, 0b1, 0b10000, 0b10111 $$
+
+### Additional subsets of \\( \mathbb{G} \\)
 
 Now that the required notation has been explained, let's come back to Gray codes and their properties. As explained in [this
 StackOverflow answer][so-reflected], the term « reflected binary code » comes from the way Frank Gray constructed the binary
@@ -72,24 +107,27 @@ as follows:
 
 $$ \forall n \in \mathbb{N}: \mathbb{G}_n^- = \{ x \in \mathbb{G} : 2^n \le x < 2^n + 2^{n-1} \} $$
 
-$$ \mathbb{G}^- = \bigcup_{i=1}^{n} \mathbb{G}_i^- $$
+$$ \mathbb{G}^- = \bigcup_{i=1}^{\infty} \mathbb{G}_i^- $$
 
 $$ \forall n \in \mathbb{N}: \mathbb{G}_n^+ = \{ x \in \mathbb{G} : 2^n + 2^{n-1} \le x < 2^{n+1} \} $$
 
-$$ \mathbb{G}^+ = \bigcup_{i=1}^{n} \mathbb{G}_i^+ $$
+$$ \mathbb{G}^+ = \bigcup_{i=1}^{\infty} \mathbb{G}_i^+ $$
 
 These subsets of \\( \mathbb{G} \\) are interesting because some bitwise operations only work on \\( \mathbb{G}^- \\) while
 some others only work on \\( \mathbb{G}^+ \\) as we will see in other articles. The properties tend to become a little bit
-wonky whenever \\( x = 0_{\mathbb{G}} \\) or \\( x = 1_{\mathbb{G}} \\) and the algorithms almost always have special cases
+wonky for the values \\( 0_{\mathbb{G}} \\) and \\( 1_{\mathbb{G}} \\), and the algorithms almost always need special cases
 to handle these values, which is why they are not properly handled by the definitions above. Putting everything together, we
 can provide an alternative definition for \\( \mathbb{G} \\) even though it ends up being a bit recursive:
 
 $$ \mathbb{G} = \{ 0_{\mathbb{G}}, 1_{\mathbb{G}} \} \cup \mathbb{G}^- \cup \mathbb{G}^+ $$
 
 That's pretty much it for the abuses of notation that we will use to describe operations on natural numbers encoded either
-in two's complement or as Gray codes in this blog. As always, if you feel that something is missing, don't hesitate to
+in two's complement or as Gray codes in this blog. As always, if you feel that something is missing, don't hesitate to 
 report it in the [issues][issues] section of the associated repository with the « blog » label.
 
 
   [issues]: https://github.com/Morwenn/cpp-gray/issues
   [so-reflected]: http://stackoverflow.com/a/34555899/1364752
+  [wiki-boolean-domain]: https://en.wikipedia.org/wiki/Boolean_domain
+  [wiki-gray-code]: https://en.wikipedia.org/wiki/Gray_code
+  [wiki-natural-binary]: https://en.wikipedia.org/wiki/Binary_number
