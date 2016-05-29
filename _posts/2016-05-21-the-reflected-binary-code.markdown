@@ -10,6 +10,12 @@ be used to represent values of the different sets in a terse manner.
 
 ### Sets and basic operations
 
+Let \\( \\{0, 1\\}^* \\) be the set of bit vectors of any size. When the size of a bit vector is explicitly needed, we will
+use a subset of the form \\( \\{0, 1\\}^n \\) where \\( n \\) is the number of bits in the bit vector. The special subset
+\\( \\{0, 1\\} \\) without a superscript denotes the [Boolean domain][wiki-boolean-domain] (the mathematical symbol
+\\( \mathbb{B} \\) is sometimes used to represent the Boolean domain, but we give it another meaning in this blog), where
+\\( 0 \\) means « false » and \\( 1 \\) means « true ».
+
 Let \\( \mathbb{B} \\) and \\( \mathbb{G} \\) be two sets of numbers, each of them sufficient to model the set of natural
 numbers \\( \mathbb{N} \\). Both of these sets support all of the operations supported by \\( \mathbb{N} \\) with the same
 semantics. However, their behaviour differs with regard to the following \\( repr \\) bijective function:
@@ -44,9 +50,7 @@ We also define all of the operations above on \\( \mathbb{B} \\) and \\( \mathbb
 $$ \forall x, y \in \mathbb{X} : x \otimes y = repr^{-1}(repr(x) \otimes repr(y)) $$
 
 I guess that how \\( \sim \\) is defined on \\( \mathbb{B} \\) and \\( \mathbb{G} \\) is pretty obvious, so I won't repeat
-a similar formula. As a side note, I am fully aware that the mathematical symbol \\( \mathbb{B} \\) is sometimes used to
-represent the [Boolean domain][wiki-boolean-domain]; however this blog uses \\( \\{0, 1\\} \\) instead to represent it,
-which is another standard notation.
+a similar formula.
 
 ### Literals
 
