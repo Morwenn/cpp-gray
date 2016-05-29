@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <bitset>
 #include <cstddef>
 #include <limits>
 #include <type_traits>
@@ -72,6 +73,17 @@ namespace cppgray
         constexpr explicit gray_code(value_type value) noexcept;
 
         /**
+         * @brief Construction from a `bitset`.
+         *
+         * The exact bit representation of the set is used
+         * as the grey code.
+         *
+         * @param value `bitset` to convert
+         */
+        template<unsigned int N, class = std::enable_if_t<N >= std::numeric_limits<value_type>::digits>>
+        constexpr explicit gray_code(const std::bitset<N> & value) noexcept;
+
+        /**
          * @brief Construction from a boolean.
          *
          * Regular integers and Gray code have the same
@@ -97,6 +109,11 @@ namespace cppgray
          * @brief Conversion to the underlying type.
          */
         explicit constexpr operator value_type() const noexcept;
+
+        /**
+         * @brief Conversion to the exact underlying bit representation.
+         */
+        explicit constexpr operator std::bitset<std::numeric_limits<value_type>::digits>() const noexcept;
 
         constexpr explicit operator bool() const noexcept;
 
