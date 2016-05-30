@@ -30,6 +30,7 @@
 #include <cstddef>
 #include <limits>
 #include <type_traits>
+#include <utility>
 
 namespace cppgray
 {
@@ -84,10 +85,10 @@ namespace cppgray
         ////////////////////////////////////////////////////////////
         // Assignment operations
 
-        auto operator=(value_type other) & noexcept
+        constexpr auto operator=(value_type other) & noexcept
             -> gray_code&;
 
-        auto operator=(bool other) & noexcept
+        constexpr auto operator=(bool other) & noexcept
             -> gray_code&;
 
         ////////////////////////////////////////////////////////////
@@ -96,50 +97,50 @@ namespace cppgray
         /**
          * @brief Conversion to the underlying type.
          */
-        explicit operator value_type() const noexcept;
+        explicit constexpr operator value_type() const noexcept;
 
         constexpr explicit operator bool() const noexcept;
 
         ////////////////////////////////////////////////////////////
         // Increment/decrement operations
 
-        auto operator++() noexcept
+        constexpr auto operator++() noexcept
             -> gray_code&;
-        auto operator++(int) noexcept
+        constexpr auto operator++(int) noexcept
             -> gray_code;
 
-        auto operator--() noexcept
+        constexpr auto operator--() noexcept
             -> gray_code&;
-        auto operator--(int) noexcept
+        constexpr auto operator--(int) noexcept
             -> gray_code;
 
         ////////////////////////////////////////////////////////////
         // Bitwise assignment operations
 
-        auto operator&=(gray_code other) noexcept
+        constexpr auto operator&=(gray_code other) noexcept
             -> gray_code&;
-        auto operator&=(value_type other) noexcept
+        constexpr auto operator&=(value_type other) noexcept
             -> gray_code&;
-        auto operator&=(bool other) noexcept
-            -> gray_code&;
-
-        auto operator|=(gray_code other) noexcept
-            -> gray_code&;
-        auto operator|=(value_type other) noexcept
-            -> gray_code&;
-        auto operator|=(bool other) noexcept
+        constexpr auto operator&=(bool other) noexcept
             -> gray_code&;
 
-        auto operator^=(gray_code other) noexcept
+        constexpr auto operator|=(gray_code other) noexcept
             -> gray_code&;
-        auto operator^=(value_type other) noexcept
+        constexpr auto operator|=(value_type other) noexcept
             -> gray_code&;
-        auto operator^=(bool other) noexcept
+        constexpr auto operator|=(bool other) noexcept
             -> gray_code&;
 
-        auto operator>>=(std::size_t pos) noexcept
+        constexpr auto operator^=(gray_code other) noexcept
             -> gray_code&;
-        auto operator<<=(std::size_t pos) noexcept
+        constexpr auto operator^=(value_type other) noexcept
+            -> gray_code&;
+        constexpr auto operator^=(bool other) noexcept
+            -> gray_code&;
+
+        constexpr auto operator>>=(std::size_t pos) noexcept
+            -> gray_code&;
+        constexpr auto operator<<=(std::size_t pos) noexcept
             -> gray_code&;
     };
 
@@ -183,69 +184,69 @@ namespace cppgray
     // Bitwise operations
 
     template<typename Unsigned>
-    auto operator&(gray_code<Unsigned> lhs, gray_code<Unsigned> rhs) noexcept
+    constexpr auto operator&(gray_code<Unsigned> lhs, gray_code<Unsigned> rhs) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator|(gray_code<Unsigned> lhs, gray_code<Unsigned> rhs) noexcept
+    constexpr auto operator|(gray_code<Unsigned> lhs, gray_code<Unsigned> rhs) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator^(gray_code<Unsigned> lhs, gray_code<Unsigned> rhs) noexcept
+    constexpr auto operator^(gray_code<Unsigned> lhs, gray_code<Unsigned> rhs) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator~(gray_code<Unsigned> val) noexcept
+    constexpr auto operator~(gray_code<Unsigned> val) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator>>(gray_code<Unsigned> val, std::size_t pos) noexcept
+    constexpr auto operator>>(gray_code<Unsigned> val, std::size_t pos) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator<<(gray_code<Unsigned> val, std::size_t pos) noexcept
+    constexpr auto operator<<(gray_code<Unsigned> val, std::size_t pos) noexcept
         -> gray_code<Unsigned>;
 
     ////////////////////////////////////////////////////////////
     // Bitwise operations with bool
 
     template<typename Unsigned>
-    auto operator&(gray_code<Unsigned> lhs, bool rhs) noexcept
+    constexpr auto operator&(gray_code<Unsigned> lhs, bool rhs) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator&(bool lhs, gray_code<Unsigned> rhs) noexcept
+    constexpr auto operator&(bool lhs, gray_code<Unsigned> rhs) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator|(gray_code<Unsigned> lhs, bool rhs) noexcept
+    constexpr auto operator|(gray_code<Unsigned> lhs, bool rhs) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator|(bool lhs, gray_code<Unsigned> rhs) noexcept
+    constexpr auto operator|(bool lhs, gray_code<Unsigned> rhs) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator^(gray_code<Unsigned> lhs, bool rhs) noexcept
+    constexpr auto operator^(gray_code<Unsigned> lhs, bool rhs) noexcept
         -> gray_code<Unsigned>;
 
     template<typename Unsigned>
-    auto operator^(bool lhs, gray_code<Unsigned> rhs) noexcept
+    constexpr auto operator^(bool lhs, gray_code<Unsigned> rhs) noexcept
         -> gray_code<Unsigned>;
 
     ////////////////////////////////////////////////////////////
     // Bitwise assignment operations
 
     template<typename Unsigned>
-    auto operator&=(Unsigned& lhs, gray_code<Unsigned> rhs) noexcept
+    constexpr auto operator&=(Unsigned& lhs, gray_code<Unsigned> rhs) noexcept
         -> Unsigned&;
 
     template<typename Unsigned>
-    auto operator|=(Unsigned& lhs, gray_code<Unsigned> rhs) noexcept
+    constexpr auto operator|=(Unsigned& lhs, gray_code<Unsigned> rhs) noexcept
         -> Unsigned&;
 
     template<typename Unsigned>
-    auto operator^=(Unsigned& lhs, gray_code<Unsigned> rhs) noexcept
+    constexpr auto operator^=(Unsigned& lhs, gray_code<Unsigned> rhs) noexcept
         -> Unsigned&;
 
     ////////////////////////////////////////////////////////////
@@ -259,11 +260,11 @@ namespace cppgray
     // Mathematical functions
 
     template<typename Unsigned>
-    auto is_even(gray_code<Unsigned> code) noexcept
+    constexpr auto is_even(gray_code<Unsigned> code) noexcept
         -> bool;
 
     template<typename Unsigned>
-    auto is_odd(gray_code<Unsigned> code) noexcept
+    constexpr auto is_odd(gray_code<Unsigned> code) noexcept
         -> bool;
 
     #include "gray.inl"
