@@ -36,6 +36,12 @@ constexpr gray_code<Unsigned>::gray_code(value_type value) noexcept:
 {}
 
 template<typename Unsigned>
+template<unsigned int N, class = std::enable_if_t<N >= std::numeric_limits<value_type>::digits>>
+constexpr gray_code<Unsigned>::gray_code(const std::bitset<N> & value) noexcept:
+    value( value.to_ullong() )
+{}
+
+template<typename Unsigned>
 constexpr gray_code<Unsigned>::gray_code(bool value) noexcept:
     value(value)
 {}
@@ -72,6 +78,12 @@ constexpr gray_code<Unsigned>::operator value_type() const noexcept
         res ^= res >> mask;
     }
     return res;
+}
+
+template<typename Unsigned>
+constexpr gray_code<Unsigned>::operator std::bitset<std::numeric_limits<value_type>::digits>() const noexcept
+{
+    return value;
 }
 
 template<typename Unsigned>
