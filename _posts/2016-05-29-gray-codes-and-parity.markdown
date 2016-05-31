@@ -52,7 +52,7 @@ parity in parallel », with the following simplified generic implementation:
 
 {% highlight cpp %}
 template<typename Unsigned>
-auto parity(Unsigned value)
+constexpr auto parity(Unsigned value)
     -> bool
 {
     for (std::size_t i = std::numeric_limits<Unsigned>::digits / 2 ;
@@ -81,7 +81,7 @@ Twiddling Hacks contains an additional trick to reduce the number of instruction
 
 {% highlight cpp %}
 template<typename Unsigned>
-auto parity(Unsigned value)
+constexpr auto parity(Unsigned value)
     -> bool
 {
     for (std::size_t i = std::numeric_limits<Unsigned>::digits / 2 ;
@@ -108,7 +108,7 @@ of a `gray_code`: `is_odd` and `is_even`. They are implemented as follows:
 
 {% highlight cpp %}
 template<typename Unsigned>
-auto is_odd(gray_code<Unsigned> code) noexcept
+constexpr auto is_odd(gray_code<Unsigned> code) noexcept
     -> bool
 {
     // A Gray code is odd when the number of bits set in
@@ -131,7 +131,7 @@ auto is_odd(gray_code<Unsigned> code) noexcept
 }
 
 template<typename Unsigned>
-auto is_even(gray_code<Unsigned> code) noexcept
+constexpr auto is_even(gray_code<Unsigned> code) noexcept
     -> bool
 {
     return not is_odd(code);

@@ -33,21 +33,34 @@ struct gray_code
     // Construction operations
     constexpr gray_code() noexcept;
     constexpr explicit gray_code(value_type value) noexcept;
+    template<
+        std::size_t N,
+        typename = std::enable_if_t<(N >= std::numeric_limits<value_type>::digits)>
+    >
+    explicit gray_code(const std::bitset<N>& value) noexcept;
     constexpr explicit gray_code(bool b) noexcept;
 
     // Assignment operations
-    auto operator=(value_type other) & noexcept
+    constexpr auto operator=(value_type other) & noexcept
         -> gray_code&;
-    auto operator=(bool other) & noexcept
+    template<
+        std::size_t N,
+        typename = std::enable_if_t<(N >= std::numeric_limits<value_type>::digits)>
+    >
+    auto operator=(std::bitset<N> other) & noexcept
+        -> gray_code&;
+    constexpr auto operator=(bool other) & noexcept
         -> gray_code&;
 
     // Conversion operations
-    explicit operator value_type() const noexcept;
+    constexpr explicit operator value_type() const noexcept;
+    template<std::size_t N>
+    constexpr explicit operator std::bitset<N>() const noexcept;
     constexpr explicit operator bool() const noexcept;
 };
 
 template<typename Unsigned>
-auto swap(gray_code<Unsigned>& lhs, gray_code<Unsigned>& rhs) noexcept
+constexpr auto swap(gray_code<Unsigned>& lhs, gray_code<Unsigned>& rhs) noexcept
     -> void;
 {% endhighlight %}
 
@@ -67,6 +80,10 @@ bits. One can construct an `unsigned` with the bits of a `gray_code<unsigned>` b
 `gray_code::value`; however there is currently no way to construct a `gray_code<unsigned>` directly from the bits of an
 `unsigned`. `gray_code::operator=` also transforms the passed `unsigned` into a Gray code instead of reinterpreting its
 bits.
+
+A `gray_code` can be initialized from an [`std::bitset`][bitset] of any size smaller than the number of digits of the
+underlying unsigned integer. Since bits *do* matter, this overload is useful to construct the Gray code directly from the
+expected bit vector. It is also possible to explicitly convert the Gray code to an `std::bitset`.
 
 Any `gray_code` specialization also handles `bool` values thanks to an interesting observation: `true` and `false` in C++
 respectively have the binary representations \\( 0b1 \\) and \\( 0b0 \\), which also happen to be the binary representations
