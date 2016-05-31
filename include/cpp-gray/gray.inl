@@ -416,11 +416,12 @@ constexpr auto operator^=(Unsigned& lhs, gray_code<Unsigned> rhs) noexcept
 // Utility functions
 
 template<typename Unsigned>
-auto swap(gray_code<Unsigned>& lhs, gray_code<Unsigned>& rhs) noexcept
+constexpr auto swap(gray_code<Unsigned>& lhs, gray_code<Unsigned>& rhs) noexcept
     -> void
 {
-    using std::swap;
-    swap(lhs.value, rhs.value);
+    auto tmp = lhs.value;
+    lhs.value = rhs.value;
+    rhs.value = tmp;
 }
 
 ////////////////////////////////////////////////////////////

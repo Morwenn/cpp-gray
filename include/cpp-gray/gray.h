@@ -30,7 +30,6 @@
 #include <cstddef>
 #include <limits>
 #include <type_traits>
-#include <utility>
 
 namespace cppgray
 {
@@ -253,7 +252,7 @@ namespace cppgray
     // Utility functions
 
     template<typename Unsigned>
-    auto swap(gray_code<Unsigned>& lhs, gray_code<Unsigned>& rhs) noexcept
+    constexpr auto swap(gray_code<Unsigned>& lhs, gray_code<Unsigned>& rhs) noexcept
         -> void;
 
     ////////////////////////////////////////////////////////////
