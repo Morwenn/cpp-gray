@@ -84,7 +84,7 @@ namespace cppgray
             std::size_t N,
             typename = std::enable_if_t<(N >= std::numeric_limits<value_type>::digits)>
         >
-        constexpr explicit gray_code(const std::bitset<N>& value) noexcept;
+        explicit gray_code(const std::bitset<N>& value) noexcept;
 
         /**
          * @brief Construction from a boolean.
@@ -102,6 +102,13 @@ namespace cppgray
         constexpr auto operator=(value_type other) & noexcept
             -> gray_code&;
 
+        template<
+            std::size_t N,
+            typename = std::enable_if_t<(N >= std::numeric_limits<value_type>::digits)>
+        >
+        auto operator=(std::bitset<N> other) & noexcept
+            -> gray_code&;
+
         constexpr auto operator=(bool other) & noexcept
             -> gray_code&;
 
@@ -111,12 +118,13 @@ namespace cppgray
         /**
          * @brief Conversion to the underlying type.
          */
-        explicit constexpr operator value_type() const noexcept;
+        constexpr explicit operator value_type() const noexcept;
 
         /**
          * @brief Conversion to the exact underlying bit representation.
          */
-        explicit constexpr operator std::bitset<std::numeric_limits<value_type>::digits>() const noexcept;
+        template<std::size_t N>
+        constexpr explicit operator std::bitset<N>() const noexcept;
 
         constexpr explicit operator bool() const noexcept;
 

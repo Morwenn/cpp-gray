@@ -37,7 +37,7 @@ constexpr gray_code<Unsigned>::gray_code(value_type value) noexcept:
 
 template<typename Unsigned>
 template<std::size_t N, typename>
-constexpr gray_code<Unsigned>::gray_code(const std::bitset<N>& value) noexcept:
+gray_code<Unsigned>::gray_code(const std::bitset<N>& value) noexcept:
     value(value.to_ullong())
 {}
 
@@ -55,6 +55,14 @@ constexpr auto gray_code<Unsigned>::operator=(value_type other) & noexcept
 {
     value = (other >> 1) ^ other;
     return *this;
+}
+
+template<typename Unsigned>
+template<std::size_t N, typename>
+auto gray_code<Unsigned>::operator=(std::bitset<N> other) & noexcept
+    -> gray_code&
+{
+    value = other.to_ullong();
 }
 
 template<typename Unsigned>
@@ -81,7 +89,8 @@ constexpr gray_code<Unsigned>::operator value_type() const noexcept
 }
 
 template<typename Unsigned>
-constexpr gray_code<Unsigned>::operator std::bitset<std::numeric_limits<value_type>::digits>() const noexcept
+template<std::size_t N>
+constexpr gray_code<Unsigned>::operator std::bitset<N>() const noexcept
 {
     return value;
 }
