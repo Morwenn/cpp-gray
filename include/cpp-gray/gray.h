@@ -287,11 +287,11 @@ namespace cppgray
     // Mathematical functions
 
     template<typename Unsigned>
-    constexpr auto is_even(gray_code<Unsigned> code) noexcept
+    constexpr auto is_odd(gray_code<Unsigned> code) noexcept
         -> bool;
 
     template<typename Unsigned>
-    constexpr auto is_odd(gray_code<Unsigned> code) noexcept
+    constexpr auto is_even(gray_code<Unsigned> code) noexcept
         -> bool;
 
     #include "gray.inl"

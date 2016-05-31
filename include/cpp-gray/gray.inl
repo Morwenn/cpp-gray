@@ -449,31 +449,31 @@ constexpr auto swap(gray_code<Unsigned>& lhs, gray_code<Unsigned>& rhs) noexcept
 // Mathematical functions
 
 template<typename Unsigned>
-constexpr auto is_even(gray_code<Unsigned> code) noexcept
-    -> bool
-{
-    return not is_odd(code);
-}
-
-template<typename Unsigned>
 constexpr auto is_odd(gray_code<Unsigned> code) noexcept
     -> bool
 {
     // A Gray code is odd when the number of bits set in
     // its representation is odd
 
-    #if defined(__GNUC__) || defined(__clang__)
+#if defined(__GNUC__) || defined(__clang__)
+    // Compiler intrinsics tend to be the fastest
+    return static_cast<bool>(__builtin_parity(code.value));
+#else
+    for (std::size_t i = std::numeric_limits<Unsigned>::digits / 2 ;
+         i > 2 ; i >>= 1)
+    {
+        code.value ^= (code.value >> i);
+    }
+    code.value &= 0xf;
+    return static_cast<bool>(
+        (0b0110'1001'1001'0110 >> code.value) & 1
+    );
+#endif
+}
 
-        // Compiler intrinsics tend to be the fastest
-        return static_cast<bool>(__builtin_parity(code.value));
-
-    #else
-
-        for (std::size_t i = std::numeric_limits<Unsigned>::digits / 2 ; i ; i >>= 1)
-        {
-            code.value ^= (code.value >> i);
-        }
-        return static_cast<bool>(code.value & 1);
-
-    #endif
+template<typename Unsigned>
+constexpr auto is_even(gray_code<Unsigned> code) noexcept
+    -> bool
+{
+    return not is_odd(code);
 }
