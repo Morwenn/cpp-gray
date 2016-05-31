@@ -80,8 +80,11 @@ namespace cppgray
          *
          * @param value `bitset` to convert
          */
-        template<unsigned int N, class = std::enable_if_t<N >= std::numeric_limits<value_type>::digits>>
-        constexpr explicit gray_code(const std::bitset<N> & value) noexcept;
+        template<
+            std::size_t N,
+            typename = std::enable_if_t<(N >= std::numeric_limits<value_type>::digits)>
+        >
+        constexpr explicit gray_code(const std::bitset<N>& value) noexcept;
 
         /**
          * @brief Construction from a boolean.
