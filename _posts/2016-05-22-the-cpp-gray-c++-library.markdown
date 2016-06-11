@@ -164,12 +164,9 @@ assert(u == gr);
 
 To be honest, there isn't much to showcase yet and the library really isn't evolving at a fast pace considering that any
 other fast Gray code algorithm has yet to be discovered. If any new algorithm makes its way into the library, it will surely
-be documented here, and will probably have a dedicated article to describe it as well. As always, if you feel that something
-is missing, don't hesitate to report it in the [issues][issues] section of the associated repository with the « blog »
-label.
+be documented here, and will probably have a dedicated article to describe it as well.
 
 
   [bitset]: http://en.cppreference.com/w/cpp/utility/bitset
   [cpp-gray]: https://github.com/Morwenn/cpp-gray
-  [issues]: https://github.com/Morwenn/cpp-gray/issues
   [parity]: https://en.wikipedia.org/wiki/Parity_%28mathematics%29

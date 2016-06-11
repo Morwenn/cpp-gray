@@ -145,12 +145,8 @@ why the use of intrinsics is limited to g++ and clang++. Another solution to com
 been to use [`std::bitset::count`][bitset-count], which is the function in the standard library the most likely to map to a
 native `popcnt` instruction.
 
-As always, if you feel that something is missing, don't hesitate to report it in the [issues][issues] section of the
-associated repository with the « blog » label.
-
 
   [bit-twiddling]: http://graphics.stanford.edu/~seander/bithacks.html#ParityNaive
   [bitset-count]: http://en.cppreference.com/w/cpp/utility/bitset/count
-  [issues]: https://github.com/Morwenn/cpp-gray/issues
   [wiki-parity-function]: https://en.wikipedia.org/wiki/Parity_function
   [wiki-popcount]: https://en.wikipedia.org/wiki/Hamming_weight

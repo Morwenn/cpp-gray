@@ -27,7 +27,8 @@ and the other ones have generally been less studied.
 
 That's it for the introduction. If you ever find mistakes, or things you feel are downright wrong in this blog, don't
 hesitate to share your thoughts and improvements by opening an [issue][issues] with the « blog » label in the
-corresponding [GitHub repository][cpp-gray].
+corresponding [GitHub repository][cpp-gray]. For smaller things or article-specific things, you can use the comments
+instead.
 
 
 [cpp-gray]: https://github.com/Morwenn/cpp-gray

@@ -156,12 +156,8 @@ two's complement integers. Computing the hyperceiling is mostly equivalent, so i
 Note however that the function returns \\( 0 \\) when the input is \\( 0 \\), which means that an additional check might be
 needed to handle that case when it does matter.
 
-As always, if you feel that something is missing, don't hesitate to report it in the [issues][issues] section of the
-associated repository with the « blog » label.
-
 
   [aggregate-magic-algo-msb]: http://aggregate.org/MAGIC/#Most%20Significant%201%20Bit
-  [issues]: https://github.com/Morwenn/cpp-gray/issues
   [se-math-hyperfloor]: http://math.stackexchange.com/a/1311232/36352
   [wiki-egyptian-multiplication]: https://en.wikipedia.org/wiki/Ancient_Egyptian_multiplication
   [wiki-euclidean-division]: https://en.wikipedia.org/wiki/Euclidean_division

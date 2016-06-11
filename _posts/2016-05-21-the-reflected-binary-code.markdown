@@ -126,11 +126,10 @@ can provide an alternative definition for \\( \mathbb{G} \\) even though it ends
 $$ \mathbb{G} = \{ 0_{\mathbb{G}}, 1_{\mathbb{G}} \} \cup \mathbb{G}^- \cup \mathbb{G}^+ $$
 
 That's pretty much it for the abuses of notation that we will use to describe operations on natural numbers encoded either
-in two's complement or as Gray codes in this blog. As always, if you feel that something is missing, don't hesitate to 
-report it in the [issues][issues] section of the associated repository with the « blog » label.
+in two's complement or as Gray codes in this blog. Don't hesitate to comment if you have questions or if you believe that
+you found errors in the code or in the descriptions.
 
 
-  [issues]: https://github.com/Morwenn/cpp-gray/issues
   [so-reflected]: http://stackoverflow.com/a/34555899/1364752
   [wiki-boolean-domain]: https://en.wikipedia.org/wiki/Boolean_domain
   [wiki-gray-code]: https://en.wikipedia.org/wiki/Gray_code

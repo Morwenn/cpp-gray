@@ -15,8 +15,10 @@ footer-links:
   rss: RSS
   stackoverflow: "users/1364752/morwenn"
 
-
 permalink: /:title/
+
+# Disqus configuration
+disqus_shortname: 'cpp-gray'
 
 # The release of Jekyll Now that you're using
 version: v1.2.0
