@@ -19,8 +19,8 @@ $$\forall n \in \mathbb{N} : repr(2_\mathbb{G}^n) = \begin{cases}
 \end{cases}$$
 
 Note that if negative left shift was allowed, we wouldn't even need the special case for \\( n = 0 \\). However, this blog
-focuses on C++, and a negative left shift is undefined behaviour in C++. The definition above can easily proved to be true.
-We know that the two's representation of powers of \\( 2 \\) can be expressed as follows:
+focuses on C++, and a negative left shift is undefined behaviour in C++. The definition above can easily be proven true. We
+know that the two's representation of powers of \\( 2 \\) can be expressed as follows:
 
 $$ \forall n \in \mathbb{N} : repr(2_\mathbb{B}^n) = 0b1 \ll n $$
 
@@ -93,7 +93,7 @@ In \\( \mathbb{B} \\), computing the hyperfloor of a number amounts to isolating
 it amounts to isolating that same bit and performing \\( to\\_gray \\), which is pretty handy considering that we don't have
 to convert the Gray code back to an integer first: the highest set bit of any number in \\( \mathbb{B} \\) is exactly the
 same as in \\( \mathbb{G} \\). [The Aggregate Magic Algorithms][aggregate-magic-algo-msb] gives us the following
-\\( \log{n} \\) algorithm to isolate the highest set bit in a 32-bit integer:
+\\( O( \log{n} ) \\) algorithm to isolate the highest set bit in a 32-bit integer:
 
 {% highlight c %}
 unsigned int
@@ -123,9 +123,9 @@ auto hyperfloor(Unsigned value)
     for (std::size_t i = 1 ; i <= std::numeric_limits<Unsigned>::digits / 2 ;
          i <<= 1)
     {
-        x |= x >> i;
+        value |= value >> i;
     }
-    return x & ~(x >> 1);
+    return value & ~(value >> 1);
 }
 {% endhighlight %}
 
@@ -144,9 +144,9 @@ auto hyperfloor(gray_code<Unsigned> value)
     for (std::size_t i = 1 ; i <= std::numeric_limits<Unsigned>::digits / 2 ;
          i <<= 1)
     {
-        x |= x >> i;
+        value |= value >> i;
     }
-    return x & ~(x >> 2);
+    return value & ~(value >> 2);
 }
 {% endhighlight %}
 
