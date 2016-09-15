@@ -28,12 +28,12 @@ and the other ones have generally been less studied.
 Here is the full list of available articles:
 
 1. Introductory articles
-  * [Basic concepts and notation]({% post_url 2016-05-21-the-reflected-binary-code %})
-  * [C++ library overview]({% post_url 2016-05-22-the-cpp-gray-c++-library %})
+  * [Basic concepts and notation](https://morwenn.github.io/cpp-gray/the-reflected-binary-code/)
+  * [C++ library overview](https://morwenn.github.io/cpp-gray/the-cpp-gray-c++-library/)
 2. Basic operations
-  * {% post_url 2016-05-25-converting-to-and-from-gray-code %}
-  * {% post_url 2016-05-29-gray-codes-and-parity %}
-  * {% post_url 2016-06-07-powers-of-2-and-gray-codes %}
+  * [Converting to and from Gray code](https://morwenn.github.io/cpp-gray/converting-to-and-from-gray-code/)
+  * [Gray codes and parity](https://morwenn.github.io/cpp-gray/gray-codes-and-parity/)
+  * [Powers of 2 and Gray codes](https://morwenn.github.io/cpp-gray/powers-of-2-and-gray-codes/)
 3. Addition algorithms
   * None for now, come back later :)
 4. TODO: Algorithms complexity cheat sheet
