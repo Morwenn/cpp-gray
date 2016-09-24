@@ -137,10 +137,11 @@ constexpr auto neighbors(gray_code<Unsigned> code) noexcept
 
 ### Repeteadly incrementing a Gray code
 
-The Gray code incrementation operation being \\( O(\log{n}) \\), naively repeating it \\( n \\) times (for example
-incrementing a Gray counter in a `for` loop) runs in \\( O(n \log{n}) \\). However, knowing the parity of a number is enough
-to know the parity of its successor, which means that one can take this information into account if they want to repeatedly
-increment a Gray code \\( n \\) times, turning such an \\( O(n \log{n}) \\) algorithm into an \\( O(n) \\) one.
+The Gray code incrementation operation being \\( O(\log{n}) \\), naively repeating it \\( k \\) times (for example
+incrementing a Gray counter in a `for` loop) runs in \\( O(k \log{n}) \\). However, knowing the parity of a number is enough
+to know the parity of its successor, which means that one can take this information into account and perform the parity
+check only once if they want to increment a Gray code \\( k \\) times, turning the \\( O(k \log{n}) \\) algorithm into an
+\\( O(k + \log{n}) \\) one, which should be equivalent to \\( O(k) \\) most of the time.
 
 
   [so-gray-code-increment]: http://stackoverflow.com/a/17493235/1364752
