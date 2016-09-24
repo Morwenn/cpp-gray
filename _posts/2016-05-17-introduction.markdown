@@ -34,6 +34,7 @@ Here is the full list of available articles:
   * [Converting to and from Gray code](https://morwenn.github.io/cpp-gray/converting-to-and-from-gray-code/)
   * [Gray codes and parity](https://morwenn.github.io/cpp-gray/gray-codes-and-parity/)
   * [Powers of 2 and Gray codes](https://morwenn.github.io/cpp-gray/powers-of-2-and-gray-codes/)
+  * [Neighbours in Gray codes](https://morwenn.github.io/cpp-gray/neighbours-in-gray-codes/)
 3. Addition algorithms
   * None for now, come back later :)
 4. TODO: Algorithms complexity cheat sheet
