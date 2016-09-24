@@ -33,6 +33,14 @@ the element in two's complement, or [« natural binary code »][wiki-natural-b
 * To any element of \\( \mathbb{G} \\), \\( repr \\) associates a bit vector corresponding to the reflected binary [Gray
 code][wiki-gray-code] representation of the element.
 
+We also define inverse functions named $$ repr^{-1}_{\mathbb{G}} $$ and \\( repr^{-1}_{\mathbb{B}} \\) to associate a
+number from \\( \mathbb{G} \\) or \\( \mathbb{B} \\) to a bit vector:
+
+$$\begin{array}{ccccc}
+repr^{-1}_{\mathbb{G}} & : & \{0, 1\}^* & \longrightarrow  & \mathbb{G}\\
+repr^{-1}_{\mathbb{B}} & : & \{0, 1\}^* & \longrightarrow  & \mathbb{B}
+\end{array}$$
+
 We abuse a few mathematical symbols to define the following bitwise operations on \\( \\{0, 1\\}^* \\) akin to those used in
 C++ and other well-known programming languages:
 
@@ -47,7 +55,11 @@ We also define all of the operations above on \\( \mathbb{B} \\) and \\( \mathbb
 \\( \otimes \\) be any of the binary operators above, and let \\( \mathbb{X} \\) be either \\( \mathbb{B} \\) or
 \\( \mathbb{G} \\):
 
-$$ \forall x, y \in \mathbb{X} : x \otimes y = repr^{-1}(repr(x) \otimes repr(y)) $$
+$$ \forall x, y \in \mathbb{X} : x \otimes y = repr^{-1}_{\mathbb{X}}(repr(x) \otimes repr(y)) $$
+
+$$ \forall x \in \mathbb{X}, b \in \{0, 1\}^* : x \otimes b = repr^{-1}_{\mathbb{X}}(repr(x) \otimes b) $$
+
+$$ \forall b \in \{0, 1\}^*, x \in \mathbb{X} : b \otimes x = repr^{-1}_{\mathbb{X}}(b \otimes repr(x)) $$
 
 I guess that how \\( \sim \\) is defined on \\( \mathbb{B} \\) and \\( \mathbb{G} \\) is pretty obvious, so I won't repeat
 a similar formula.
