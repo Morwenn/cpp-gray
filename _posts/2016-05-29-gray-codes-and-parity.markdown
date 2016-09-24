@@ -31,6 +31,10 @@ $$ \forall n \in \{0, 1\}^* : parity(n) = parity(popcount(n)) $$
 
 Now let's come back to Gray codes. Computing the parity of a Gray code is rather easy thanks to the following property:
 
+$$\begin{array}{ccccc}
+parity & : & \mathbb{G} & \longrightarrow  & \{0, 1\}
+\end{array}$$
+
 $$ \forall n \in \mathbb{G} : parity(n) = parity(repr(n)) $$
 
 Basically, a Gray code is even if the number of bits set in its representation is even, and it is odd when the numbers of

@@ -75,7 +75,7 @@ $$ \forall n \in \mathbb{G}_{Odd}, k \in \mathbb{N} : n * 2^k = ((n \ll 1) \oplu
 
 $$ \forall n \in \mathbb{G}, k \in \mathbb{N} : n * 2^k = ((n \ll 1) \oplus parity(n)) \ll (k - 1) $$
 
-Just like with \\( 2 \\), these operations run in \\( O(1) \\), expect the generic multiplication by a power of \\( 2 \\)
+Just like with \\( 2 \\), these operations run in \\( O(1) \\), except the generic multiplication by a power of \\( 2 \\)
 which might run in \\( O( \log{n} ) \\) depending on its implementation, which makes them cheap to use to create more
 evolved algorithms.
 
