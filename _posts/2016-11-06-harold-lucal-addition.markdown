@@ -501,7 +501,7 @@ order of magnitude slower than converting the Gray code operands to two's comple
 and converting the result back to a Gray code. Which isn't surprising either since we're comparing a $$ O(n) $$ algorithm to
 a $$ O(\log{n}) $$ one in the end.
 
-It's also worse noting that this algorithm does not provide a circular behaviour on overflow.
+It's also worth noting that this algorithm does not provide a circular behaviour on overflow.
 
 
   [cpp-gray]: https://github.com/Morwenn/cpp-gray
