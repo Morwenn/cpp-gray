@@ -4,7 +4,7 @@ title: Gray Codes and Parity
 date: 2016-05-29 18:08:43 +0200
 categories: [gray code, c++]
 ---
-One of the most basic operations in \\( \mathbb{G} \\) is to check the parity of a number, to know whether it is even or
+One of the most basic operations in $$ \mathbb{G} $$ is to check the parity of a number, to know whether it is even or
 odd. Several algorithms behave differently depending on the parity of a Gray, which makes the operation pretty fundamental
 to develop more evolved algorithms. As a small reminder, the parity of an integer can be defined as follows:
 
@@ -19,9 +19,9 @@ $$\forall n \in \mathbb{N} : parity(n) = \begin{cases}
 
 Note that the name [« parity function »][wiki-parity-function] is generally used for a function that returns whether the
 number of bits set in a bit vector is even or odd. I don't know whether overloading functions is a thing in mathematical
-notation, but the concept should be obvious to most programmers, so we will add the following overload for \\( parity \\)
-that operates on \\( \\{0, 1\\}^* \\) and uses the overload of the function on \\( \mathbb{N} \\) as well as the function
-[\\( popcount \\)][wiki-popcount] that returns the number of bits set in a bit vector:
+notation, but the concept should be obvious to most programmers, so we will add the following overload for $$ parity $$
+that operates on $$ \{0, 1\}^* $$ and uses the overload of the function on $$ \mathbb{N} $$ as well as the function
+[$$ popcount $$][wiki-popcount] that returns the number of bits set in a bit vector:
 
 $$\begin{array}{ccccc}
 parity & : & \{0, 1\}^* & \longrightarrow  & \{0, 1\}
@@ -43,14 +43,14 @@ of Gray codes is that adjacent values differ by a single bit, which means that t
 Gray code always differs from that of its neighbours. The following lines give the inductive intuition needed to prove the
 property:
 
-* \\( repr(0_{\mathbb{G}}) = 0b0 \Rightarrow parity(0_{\mathbb{G}}) = parity(repr(0_{\mathbb{G}})) \\);
-* \\( \forall n \in \mathbb{G} : parity(n) \ne parity(n+1) \\) because \\( \mathbb{G} \\) models \\( \mathbb{N} \\);
-* \\( \forall n \in \mathbb{G} : parity(repr(n)) \ne parity(repr(n+1)) \\) because a single bit is flipped whenever
+* $$ repr(0_{\mathbb{G}}) = 0b0 \Rightarrow parity(0_{\mathbb{G}}) = parity(repr(0_{\mathbb{G}})) $$;
+* $$ \forall n \in \mathbb{G} : parity(n) \ne parity(n+1) $$ because $$ \mathbb{G} $$ models $$ \mathbb{N} $$;
+* $$ \forall n \in \mathbb{G} : parity(repr(n)) \ne parity(repr(n+1)) $$ because a single bit is flipped whenever
 a Gray code is incremented.
 
-Assuming that the population count returns a value in \\( \mathbb{B} \\), computing its parity is just a matter of checking
+Assuming that the population count returns a value in $$ \mathbb{B} $$, computing its parity is just a matter of checking
 whether the last bit of its representation is equal to one or zero. However, the population count of an unsigned integer is
-typically an operation that runs in \\( O(n) \\), which is a bit expensive. Fortunately, there are [several dedicated
+typically an operation that runs in $$ O(n) $$, which is a bit expensive. Fortunately, there are [several dedicated
 methods][bit-twiddling] to compute the parity of a bit vector by hand. My favourite one is probably the one named « Compute
 parity in parallel », with the following simplified generic implementation:
 
@@ -69,7 +69,7 @@ constexpr auto parity(Unsigned value)
 {% endhighlight %}
 
 The reasoning behind this algorithm comes from the parity of a bit vector can be obtained by xoring together every bit. Let
-\\( k \\) be the number of bits in the bit vector, we have:
+$$ k $$ be the number of bits in the bit vector, we have:
 
 $$\begin{array}{ccccc}
 parity & : & \{0, 1\}^k & \longrightarrow  & \{0, 1\}
@@ -80,7 +80,7 @@ $$ \forall n \in \{0, 1\}^k : parity(n) = \bigoplus_{i=0}^{k-1} n_i $$
 The algorithm above does that in parallel: for a 32-bit vector, it xors the 16 most significant bits into the 16 least
 significant ones, then it only consider the remaining 16 least significant bits: it xors their 8 most significant bits into
 their 8 least significant bits, etc... until the least significant bit contains the result of xoring every bit together. It
-is a \\( O(\log{n}) \\) algorithm while the naive algorithm to xor every bit runs in \\( O(n) \\). Now, the algorithm on Bit
+is a $$ O(\log{n}) $$ algorithm while the naive algorithm to xor every bit runs in $$ O(n) $$. Now, the algorithm on Bit
 Twiddling Hacks contains an additional trick to reduce the number of instructions, which we can also add to our algorithm:
 
 {% highlight cpp %}
@@ -101,8 +101,8 @@ constexpr auto parity(Unsigned value)
 {% endhighlight %}
 
 Once the number of remaining bits to xor together is 4, we isolate them with `value &= 0xf`, and we are guaranteed to obtain
-a number between \\( 0 \\) and \\( 15 \\). We build a build lookup table `0b0110'1001'1001'0110` where the bits correspond
-to the parity of the bit vectors corresponding the numbers \\( 0_\mathbb{B} \\) to \\( 15_\mathbb{B} \\). We only have to
+a number between $$ 0 $$ and $$ 15 $$. We build a build lookup table `0b0110'1001'1001'0110` where the bits correspond
+to the parity of the bit vectors corresponding the numbers $$ 0_\mathbb{B} $$ to $$ 15_\mathbb{B} $$. We only have to
 shift that lookup table by `value` bits and the least significant bit of the result will correspond to the parity of
 `value`. We would need at least 256-bit integers to provide a lookup table big enough to strip a few more instructions.
 
