@@ -13,7 +13,7 @@ parity & : & \mathbb{N} & \longrightarrow  & \{0, 1\}
 \end{array}$$
 
 $$\forall n \in \mathbb{N} : parity(n) = \begin{cases}
-0 & \text{if } n \bmod 2 = 0\\
+0 & \text{if } n \equiv 0 \bmod 2\\
 1 & \text{otherwise}
 \end{cases}$$
 
